@@ -24,12 +24,12 @@
 | nickname              | string | null: false               |
 | email                 | string | null: false, unique: true |
 | password              | string | null: false               |
-| password_confirmation | string | null: false               |
+| encrypted_password    | string | null: false               |
 | family_name           | string | null: false               |
 | given_name            | string | null: false               |
 | family_name_kana      | string | null: false               |
 | given_name_kana       | string | null: false               |
-| birth_date            | string | null: false               |
+| birth_date            | date   | null: false               |
 
 ### Association
 - has_many :items
@@ -38,17 +38,17 @@
 
 
 ### itemsテーブル
-|Column        |Type        |Options                         |
-|--------------|----------- |--------------------------------|
-| name         | string     | null: false                    |
-| explanation  | text       | null: false                    | 
-| category     | integer    | null: false                    |
-| condition    | integer    | null: false                    |
-| delivery_fee | integer    | null: false                    |
-| prefecture   | integer    | null: false                    | 
-| days         | integer    | null: false                    |
-| price        | integer    | null: false                    |
-| user         | references | null: false, foreign_key: true |
+|Column           |Type        |Options                         |
+|-----------------|----------- |--------------------------------|
+| name            | string     | null: false                    |
+| explanation     | text       | null: false                    | 
+| category_id     | integer    | null: false                    |
+| condition_id    | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
+| prefecture _id  | integer    | null: false                    | 
+| day_id          | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -76,14 +76,15 @@
 
 
 ### shipping_addressesテーブル
-|Column         |Type     |Options                         |
-|---------------|---------|--------------------------------|
-| post_code     | string  | null: false                    |
-| prefecture    | integer | null: false, foreign_key: true | 
-| city          | string  | null: false                    |
-| address       | string  | null: false                    |
-| building_name | string  | null: false                    |
-| phone_number  | string  | null: false                    |
+|Column         |Type        |Options                          |
+|---------------|------------|---------------------------------|
+| post_code     | string     | null: false                     |
+| prefecture_id | integer    | null: false, foreign_key: true  | 
+| city          | string     | null: false                     |
+| address       | string     | null: false                     |
+| building_name | string     |                                 |
+| phone_number  | string     | null: false                     |
+| purchase      | references | ull: false, foreign_key: true   |
 
 ### Association
 - has_one_active_hash :prefectures
