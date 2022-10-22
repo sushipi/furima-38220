@@ -54,7 +54,7 @@ RSpec.describe Item, type: :model do
       it 'priceが空では保存できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it "priceが半角数値でなければ登録できないこと" do
         @item.price = "１２３４５"
